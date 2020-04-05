@@ -44,20 +44,21 @@ const styles = mergeStyleSets({
   ],
 });
 
+
+
 class SearchBoxClass extends React.Component {
     constructor(props){
         super(props);
     }
 
-    updateState() {
+    updateState(resultsList) {
         // Note: this will *not* work as intended.
-        this.setState({searchValue: [
-                {name: "ABC1"},
-                {name: "ABC2"}
-            ]})
+        this.props.setParentState(resultsList)
     }
 
+
       render() {
+
         return (
             <div className="searchbox">
               <SearchBox
@@ -65,25 +66,16 @@ class SearchBoxClass extends React.Component {
                   // onSearch={newValue => console.log('value is ' + newValue)}
                   onChange={(i, newValue) =>
                   {
-                      console.log(newValue)
-                      this.updateState()
-                      console.log(this.props.searchValue)
                       var resultsObj = {};
                       var resultsList = [];
                       axios.get(`https://simplify-docs.appspot.com/krs/search/${newValue}`)
                           .then(function (response) {
                               var data = response['data'].results;
                               for (var result in data) {
-                                  // console.log(`dupcia: ${data[result].name}`);
-                                  // resultsObj[data[result].nip] = data[result].name
                                   resultsObj["name"] = data[result].name
                                   resultsList.push(resultsObj)
                                   resultsObj = {};
                               }
-                              this.setState({searchValue: [
-                                      {name: "ABC1"},
-                                      {name: "ABC2"}
-                                  ]})
                           })
                           .catch(function (error) {
                               // handle error
@@ -91,10 +83,7 @@ class SearchBoxClass extends React.Component {
                           })
                           .then(function () {
                           });
-                      this.setState({searchValue: [
-                              {name: "ABC1"},
-                              {name: "ABC2"}
-                          ]})
+                      this.updateState(resultsList)
                   }}
 
                   // onFocus={() => console.log(`onFocus called`)}
@@ -107,19 +96,21 @@ class SearchBoxClass extends React.Component {
     }
 
 
+
 class ResultsList extends React.Component {
       constructor(props){
-        super(props);
+          super(props);
     }
 
       render() {
+
         return (
+
             <div className={styles.container} data-is-scrollable={true}>
               <List
                   // ref={this._resolveList}
                   items={this.props.searchValue}
-
-
+                  //
                   // getPageHeight={this._getPageHeight}
                   // onRenderCell={this._onRenderCell}
               />
@@ -133,14 +124,17 @@ class AddinComponent extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          searchValue: [
-              {name: "Lorem ipsum dolor sit amet,"},
-              {name: "huzia na juzia"}
-          ],
+          searchValue: null,
           sthELse: 'bum'
       }
+
+      this.updateParentState = this.updateParentState.bind(this)
   }
 
+    updateParentState(resultsList) {
+        this.setState({searchValue: resultsList
+        })
+    }
 
   render() {
     const searchValue = this.state.searchValue;
@@ -148,6 +142,7 @@ class AddinComponent extends React.Component {
         <div>
         <SearchBoxClass
             searchValue={searchValue}
+            setParentState={this.updateParentState}
         />
         <div>
         <ResultsList
@@ -165,32 +160,4 @@ ReactDOM.render(
 <AddinComponent />,
     document.getElementById('container')
 );
-
-
-
-
-function getSearchResultsById(prefix) {
-    var resultsObj = {};
-    var resultsList = [];
-    axios.get(`https://simplify-docs.appspot.com/krs/search/${prefix}`)
-        .then(function (response) {
-            var data = response['data'].results;
-            for (var result in data) {
-                // console.log(`dupcia: ${data[result].name}`);
-                // resultsObj[data[result].nip] = data[result].name
-                resultsObj["name"] = data[result].name
-                resultsList.push(resultsObj)
-                resultsObj = {};
-            }
-            console.log(resultsList)
-            return resultsList
-        })
-        .catch(function (error) {
-            // handle error
-            console.log(error);
-        })
-        .then(function () {
-            // always executed
-        });
-}
 
