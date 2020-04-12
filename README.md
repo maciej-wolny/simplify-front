@@ -1,13 +1,13 @@
-# Run Dev Server
+## Run Dev Server
 
 npm run dev-server
 
-
+## Run AddIn in Word
 npm start
 https://docs.microsoft.com/en-us/office/dev/add-ins/testing/create-a-network-shared-folder-catalog-for-task-pane-and-content-add-ins
-simplify-front (file://PL5CG9229VNM/simplify-front)
 
 
-tutorial
+
+## tutorial
 https://docs.microsoft.com/en-us/office/dev/add-ins/tutorials/word-tutorial
 
