@@ -5,7 +5,7 @@ import { List } from 'office-ui-fabric-react/lib/List';
 import { Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { mergeStyleSets, getTheme, normalize } from 'office-ui-fabric-react/lib/Styling';
+import { mergeStyleSets, getTheme } from 'office-ui-fabric-react/lib/Styling';
 /* global AppCpntainer, Component, document, Office, module, React, require */
 
 initializeIcons();
@@ -19,29 +19,24 @@ const styles = mergeStyleSets({
     maxHeight: 500,
     marginTop: 20,
     selectors: {
+      '.ms-List-cell:nth-child(odd):hover': {
+        background: theme.palette.neutralTertiaryAlt,
+      },  
+      '.ms-List-cell:nth-child(even):hover': {
+        background: theme.palette.neutralTertiaryAlt,
+      },  
       '.ms-List-cell:nth-child(odd)': {
         height: 50,
         lineHeight: 50,
         background: theme.palette.neutralLighter,
       },
       '.ms-List-cell:nth-child(even)': {
-        height: 25,
-        lineHeight: 25,
+        height: 50,
+        lineHeight: 50,
       },
     },
   },
-  itemContent: [
-    theme.fonts.medium,
-    normalize,
-    {
-      position: 'relative',
-      display: 'block',
-      borderLeft: '3px solid ' + theme.palette.themePrimary,
-      paddingLeft: 27,
-    },
-  ],
 });
-
 
 
 class SearchBoxClass extends React.Component {
