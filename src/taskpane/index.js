@@ -29,10 +29,12 @@ const styles = mergeStyleSets({
         height: 50,
         lineHeight: 50,
         background: theme.palette.neutralLighter,
+        overflow: 'hidden',
       },
       '.ms-List-cell:nth-child(even)': {
         height: 50,
         lineHeight: 50,
+        overflow: 'hidden',
       },
     },
   },
@@ -131,7 +133,6 @@ class ResultsList extends React.Component {
                   // ref={this._resolveList}
                   items={this.props.searchValue}
                   onClick={event => this.click(event)}
-                  onSelect={() => console.log(`onSelect called`)}
               />
             </div>
         );
