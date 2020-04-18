@@ -8,30 +8,26 @@ const theme = getTheme();
 
 const styles = mergeStyleSets({
     container: {
-        overflow: 'auto',
-        maxHeight: 500,
-        marginTop: 20,
-        selectors: {
-            '.ms-List-cell:nth-child(odd):hover': {
-                background: theme.palette.neutralTertiaryAlt,
-            },
-            '.ms-List-cell:nth-child(even):hover': {
-                background: theme.palette.neutralTertiaryAlt,
-            },
-            '.ms-List-cell:nth-child(odd)': {
-                height: 50,
-                lineHeight: 50,
-                background: theme.palette.neutralLighter,
-                overflow: 'hidden',
-            },
-            '.ms-List-cell:nth-child(even)': {
-                height: 50,
-                lineHeight: 50,
-                overflow: 'hidden',
-            },
+      overflow: 'auto',
+      maxHeight: 500,
+      marginTop: 20,
+      selectors: {
+        '.ms-List-cell': {
+          height: 50,
+          lineHeight: 50,
+          overflow: 'hidden',
+        },  
+        '.ms-List-cell:nth-child(odd)': {
+          background: theme.palette.neutralLighter,
         },
+        '.ms-List-cell:nth-child(even)': {
+        },
+        '.ms-List-cell:hover': {
+          background: theme.palette.neutralTertiaryAlt,
+        },  
+      },
     },
-});
+  });
 
 class ResultsList extends React.Component {
     constructor(props) {
