@@ -10,7 +10,9 @@ class CommencementSearchBox extends React.Component {
     }
 
     updateState(resultsList) {
-        this.props.setParentState(resultsList)
+        this.props.setParentState({
+            searchValue: resultsList
+        })
     }
 
     render() {
@@ -20,13 +22,13 @@ class CommencementSearchBox extends React.Component {
                 <SearchBox
                     placeholder="tutaj cos wpisz"
                     onChange={(i, newValue) => {
-                        var resultsObj = {};
-                        var resultsList = [];
+                        let resultsObj = {};
+                        let resultsList = [];
                         console.log(config.backendURL + `/krs/search/${newValue}`)
                         axios.get(config.backendURL + `/krs/search/${newValue}`)
                             .then(function (response) {
-                                var data = response['data'].results;
-                                for (var result in data) {
+                                let data = response['data'].results;
+                                for (let result in data) {
                                     resultsObj["name"] = data[result].name
                                     resultsObj["krs"] = data[result].krs
                                     resultsList.push(resultsObj)
@@ -34,8 +36,8 @@ class CommencementSearchBox extends React.Component {
                                 }
                             })
                             .catch(function (error) {
-                                // handle error \
-                                // console.log(error);
+                                this.props.setParentState({error: error});
+                                console.log(error);
                             })
                             .then(function () {
                             });

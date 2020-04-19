@@ -1,5 +1,3 @@
-const config = {
-    backendURL: "https://simplify-docs.appspot.com"
-}
-
-export default config
+export const config = {
+    backendURL: "http://localhost:8080"
+};
