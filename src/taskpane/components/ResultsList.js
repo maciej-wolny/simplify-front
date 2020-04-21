@@ -47,7 +47,7 @@ class ResultsList extends React.Component {
     }
 
     getComparareByKrsNo = (krsNo) => {
-        axios.get(`http://localhost:5000/get_krs_data/${krsNo}`)
+        axios.get(`https://simplify-docs.appspot.com/get_commencement/${krsNo}`)
             .then(function (response) {
                 var comparare = response['data'].results;
                 console.log(comparare);
