@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import axios from 'axios';
-import config from '../config'
+import {config} from '../config'
 import {SearchBox} from "office-ui-fabric-react";
 
 class CommencementSearchBox extends React.Component {
