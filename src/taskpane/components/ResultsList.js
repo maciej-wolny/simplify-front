@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Selection} from 'office-ui-fabric-react/lib/DetailsList';
 import {List} from 'office-ui-fabric-react/lib/List';
 import {mergeStyleSets, getTheme} from 'office-ui-fabric-react/lib/Styling';
+import config from '../config'
 
 const theme = getTheme();
 
@@ -19,8 +20,6 @@ const styles = mergeStyleSets({
         },  
         '.ms-List-cell:nth-child(odd)': {
           background: theme.palette.neutralLighter,
-        },
-        '.ms-List-cell:nth-child(even)': {
         },
         '.ms-List-cell:hover': {
           background: theme.palette.neutralTertiaryAlt,
@@ -47,7 +46,7 @@ class ResultsList extends React.Component {
     }
 
     getComparareByKrsNo = (krsNo) => {
-        axios.get(`https://simplify-docs.appspot.com/get_commencement/${krsNo}`)
+        axios.get(`${config.appURL}/get_commencement/${krsNo}`)
             .then(function (response) {
                 var comparare = response['data'].results;
                 console.log(comparare);
@@ -63,9 +62,6 @@ class ResultsList extends React.Component {
                 // handle error
                 // console.log(error);
             })
-            // Will execute regardless of the result of the function
-            .then(function () {
-            });
     }
 
 
