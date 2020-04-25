@@ -5,7 +5,7 @@ import MicrosoftLogin from "react-microsoft-login";
 
 const MICROSOFT_CLIENT_ID = "";
 
-class MicrosoftLogin extends React.Component {
+class MicrosoftAuth extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,4 +30,4 @@ class MicrosoftLogin extends React.Component {
     }
 }
 
-export default MicrosoftLogin
+export default MicrosoftAuth
