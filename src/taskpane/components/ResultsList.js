@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Selection} from 'office-ui-fabric-react/lib/DetailsList';
 import {List} from 'office-ui-fabric-react/lib/List';
 import {mergeStyleSets, getTheme} from 'office-ui-fabric-react/lib/Styling';
-import config from '../config'
+import {config} from '../config'
 
 const theme = getTheme();
 
